@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Tweet } from '../../components/Tweet';
 import useUser from '../../hooks/useUser';
 import { fetchLatestTweets } from '../../firebase/client';
+import { Button } from '../../components/Button';
+import { useRouter } from 'next/router';
 
 export default function HomePage() {
   const [timeLine, setTimeLine] = useState([]);
@@ -11,6 +13,12 @@ export default function HomePage() {
   useEffect(() => {
     user && fetchLatestTweets().then(setTimeLine);
   }, [user]);
+
+  const router = useRouter();
+
+  const TweetPlace = () => {
+    router.push('https://twitter-clone-lovat.vercel.app/compose/tweet');
+  };
 
   return (
     <>
@@ -31,11 +39,20 @@ export default function HomePage() {
             );
           })}
         </section>
+        <div className="button">
+          <Button onClick={TweetPlace}>Tweet</Button>
+        </div>
         <nav></nav>
       </div>
       <style jsx>{`
         section {
           padding-top: 49px;
+        }
+
+        .button {
+          position: fixed;
+          bottom: 10%;
+          right: 5%;
         }
 
         .Container {

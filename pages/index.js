@@ -14,7 +14,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    user && router.replace('./home');
+    user && router.replace('https://twitter-clone-lovat.vercel.app/home');
   }, [user]);
 
   const handleClick = () => {
